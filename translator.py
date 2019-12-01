@@ -114,23 +114,23 @@ lang = {'af': 'afrikaans',
     'he': 'Hebrew'}
 
 class Main(QMainWindow, test):
-    def __init__(cls):
-        QMainWindow.__init__(cls)
-        cls.setupUi(cls)
-        cls.show()
-        cls.handleBtn()
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.setupUi(self)
+        self.show()
+        self.handleBtn()
         for keys, values in lang.items():
-            cls.comboBox.addItem(values)
+            self.comboBox.addItem(values)
 
-        cls.label.setText('Type or paste Text to convert here')
+        self.label.setText('Type or paste Text to convert here')
 
-    def handleBtn(cls):
-        cls.pushButton_2.clicked.connect(cls.functText)
+    def handleBtn(self):
+        self.pushButton_2.clicked.connect(self.functText)
 
-    def functText(cls):
+    def functText(self):
         try:
-            text2edit = cls.textEdit.toPlainText()
-            dest1 = cls.comboBox.currentText()
+            text2edit = self.textEdit.toPlainText()
+            dest1 = self.comboBox.currentText()
             translator = Translator()
             text = translator.translate(text2edit, dest=dest1, src='auto')
             dLang = translator.detect([text2edit])
@@ -138,10 +138,10 @@ class Main(QMainWindow, test):
                 data = lan.lang
                 if data in lang:
                     data = lang.get(data, "")
-                    cls.textEdit_3.setPlainText(text.text)
-                    cls.label.setText(f'You are converting from {data} to {dest1}')
+                    self.textEdit_3.setPlainText(text.text)
+                    self.label.setText(f'You are converting from {data} to {dest1}')
         except:
-            cls.statusBar().showMessage('Please Choose a Desitatnation language')
+            self.statusBar().showMessage('Please Choose a Desitatnation language')
 
 
 
